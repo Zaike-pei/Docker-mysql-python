@@ -7,10 +7,11 @@ time.sleep(10) # MySQL起動待ち
 
 # 設定取得
 try:
-    db_name = Settings.get("DATABASE_NAME")
+    db_host = Settings.get("DATBASE_HOST")
     db_user = Settings.get('DATABASE_USER')
-    db_password = Settings.get('DATABASE_USER_PASSWORD')
+    db_password = Settings.get('DATABASE_PASSWORD')
     db_port = Settings.get_int("DATABASE_PORT")
+    db_name = Settings.get("DATABASE_NAME")
 except Exception as e:
     print("設定取得エラー：" , e)
     exit()
@@ -20,7 +21,7 @@ try:
     cnx = mysql.connector.connect(
         user = db_user,
         password = db_password,
-        host = 'db',
+        host = db_host,
         port = db_port
     )
 

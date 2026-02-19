@@ -6,10 +6,10 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: testdb
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
     ports:
-      -"3306:3306"
+      -"3307:${DATABASE_PORT}"
     volumes:
       - db_data:/var/lib/mysql
   
@@ -22,7 +22,7 @@ services:
       - .env
     volumes:
       - .:/app
-    command: python main.py
+    command: python mysql_connect.py
 
 volumes:
   db_data:
